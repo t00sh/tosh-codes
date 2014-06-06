@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Tosh'
 SITENAME = "<Tosh'codes>"
-SITEURL = 'http://tosh-codes.tuxfamily.org'
+SITEURL = 'http://www.t0x0sh.org'
 
 TIMEZONE = 'Europe/Paris'
 
@@ -36,6 +36,6 @@ DEFAULT_PAGINATION = 5
 STATIC_PATHS = ['images']
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = False
+#RELATIVE_URLS = False
 
 THEME = "themes/pelican-simplegrey"

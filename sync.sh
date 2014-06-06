@@ -7,7 +7,7 @@
 
 
 AGENT_NAME="ssh-agent"
-REMOTE_REPO="~/toshpage/tosh-codes.tuxfamily.org-web/htdocs/"
+REMOTE_REPO="~/toshpage/t0x0sh.org-web/htdocs/"
 
 if [ -f $HOME/.ssh/$AGENT_NAME ]
 then
