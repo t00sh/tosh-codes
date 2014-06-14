@@ -65,7 +65,7 @@ Génération des clefs :
 	server# ./build-key-server server
 	server# ./build-key client
 
-Copie les clefs :
+Copie des clefs :
 
     :::console
 	server# cp ca.crt ..
