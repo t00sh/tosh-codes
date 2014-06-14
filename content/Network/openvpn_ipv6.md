@@ -85,6 +85,8 @@ Voici comment configurer un tunnel IPv6, pouvant transporter de l'IPv4 ou de l'I
 
 ![IPv6 tunnel](images/ipv6_tunnel.png)
 
+Pour celà, il faut éditer le fichier /etc/openvpn/server.conf
+
 ### Serveur
 
     :::config
@@ -133,6 +135,8 @@ Voici comment configurer un tunnel IPv6, pouvant transporter de l'IPv4 ou de l'I
 
 	# Logging verbosity
 	verb 4
+
+Éditer maintenant le fichier /etc/openvpn/client.conf du client
 
 ### Client
 
