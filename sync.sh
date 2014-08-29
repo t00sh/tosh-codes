@@ -7,7 +7,7 @@
 
 
 AGENT_NAME="ssh-agent"
-REMOTE_REPO="~/toshpage/t0x0sh.org-web/htdocs/"
+REMOTE_REPO="/usr/share/nginx/www"
 
 if [ -f $HOME/.ssh/$AGENT_NAME ]
 then
@@ -15,6 +15,6 @@ then
     pelican content
     cd output
     chmod -R 0755 ./
-    rsync -e ssh -pazvc --delete-after ./* tuxfamily:$REMOTE_REPO
+    rsync -e ssh -pazvc --delete-after ./* www-data@t0x0sh.org:$REMOTE_REPO
 fi
 
