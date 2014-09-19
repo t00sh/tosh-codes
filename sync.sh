@@ -5,16 +5,15 @@
 # 
 # Synchronise the local repo with tosh-codes
 
+set -x
+set -e
 
-AGENT_NAME="ssh-agent"
 REMOTE_REPO="/usr/share/nginx/www"
+LOCAL_REPO="./output"
 
-if [ -f $HOME/.ssh/$AGENT_NAME ]
-then
-    . $HOME/.ssh/$AGENT_NAME
-    pelican content
-    cd output
-    chmod -R 0755 ./
-    rsync -e ssh -pazvc --delete-after ./* www-data@t0x0sh.org:$REMOTE_REPO
-fi
+pelican content
+cp -R repo $LOCAL_REPO/
+chmod -R 0755 $LOCAL_REPO
+
+rsync -rvap --delete --progress -e ssh $LOCAL_REPO/* www-data@10.8.0.1:$REMOTE_REPO/
 
