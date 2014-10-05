@@ -44,7 +44,7 @@ Pour être sûr, testons :
 
 Nous avons donc bien écrasé EBP avec les 'B' et EIP avec les 'C'. Le principe du ret into libc, est qu'au lieu de jumper sur un shellcode en STACK ou présent dans une variable d'environnement, nous jumpons sur une fonction de la bibliothèque C.
 
-Le plus simple, étant de sauter sur la fonction system, nous pourrons alors exécuter la commande de notre choix. Pour se faire, il faudra écraser EIP, avec l'addresse de la fonction system située dans le programme vulnérable, en lui transmettant l'addresse où sera situé notre chaine à exécuter.
+Le plus simple, étant de sauter sur la fonction system, nous pourrons alors exécuter la commande de notre choix. Pour ce faire, il faudra écraser EIP, avec l'addresse de la fonction system située dans le programme vulnérable, en lui transmettant l'addresse où sera situé notre chaine à exécuter.
 
 En connaissant un peu comment fonctionne les appels de fonctions en C, nous savons que system() ira chercher l'addresse de la chaine 4 octets plus haut sur la pile au moment de l'appel, le sommet de la pile étant EIP empilé par l'instruction CALL.
 

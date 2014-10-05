@@ -378,11 +378,11 @@ Tout d'abords, lorsqu'une fonction est appelée, les arguments sont passés dans
 
 La valeur de retour d'une fonction est quand à elle placée dans le registre **r0**.
 
-Une fonction commence généralement par un **épilogue**, et se termine par un **prologue**. Entre les deux, se trouve le corps de la fonction.
+Une fonction commence généralement par un **prologue**, et se termine par un **épilogue**. Entre les deux, se trouve le corps de la fonction.
 
-**L'épilogue** se charge de sauvegarder le contexte de la fonction appellante, décrit notamment par les registres fp et lr.
+**Le prologue** se charge de sauvegarder le contexte de la fonction appellante, décrit notamment par les registres fp et lr.
 
-**Le prologue**, lui, s'occupe de recharger le contexte de la fonction appellante, puis retourne vers l'adresse située juste après l'appel.
+**L'épilogue**, lui, s'occupe de recharger le contexte de la fonction appellante, puis retourne vers l'adresse située juste après l'appel.
 
 Analysons un bout de code C, pour voir comment est généré le code assembleur. (sans aucune options d'optimisation)
 
