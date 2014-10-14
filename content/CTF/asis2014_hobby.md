@@ -1,0 +1,95 @@
+Title: [ASIS-CTF finals] Hobby (pownable 250)
+Date: 2014-10-12
+Tags: ctf
+Author: Tosh
+Summary: ASIS ctf finals write-up for "hobby"
+
+
+Voici mon write-up pour le challenge "Hobby" du CTF ASIS. (finale)
+
+Vous pouvez trouver le binaire ici : [hobby](http://www.t0x0sh.org/repo/CTF/ASIS_finals_2014/hobby_8524ad2ae5fde9a43d7e6b1956c8099b)
+
+### Reconnaissance
+
+```
+$ file hobby
+hobby: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, stripped
+```
+
+On a un ELF 64 bits.
+
+```
+$ strings hobby
+...
+UPX!
+UPX!
+...
+```
+
+On en déduit que l'elf est packé avec UPX.
+
+On l'unpack :
+
+```
+$ upx -d hobby
+```
+
+Il s'agit d'un service d'authentification, nous proposant trois choix :
+
+```
+-------------------------------------------------
+|       Welcome to Super Secure Auth Engine     |
+-------------------------------------------------
+
+1) Register
+2) Login check
+3) Show my secret
+
+Enjoy ;)
+```
+
+### Exploitation
+
+Essayons de tracer le processus avec ltrace, et tentons de nous enregistrer :
+
+```
+...
+[pid 9873] strstr("test", "admin")                                                                                    = nil
+...
+```
+
+On a ici quelque chose d'intéressant, notre username est passé à strstr pour etre comparé à la sous-chaine "admin".
+
+On reçoit ensuite une clef pour nous identifier.
+
+
+Par contre, lorsqu'on essaye de s'enregistrer en tant qu'admin, on reçoit une erreur :
+
+```
+[pid 10185] strstr("admin", "admin")                                                                                  = "admin"
+[pid 10185] strlen("Kidding Me? :(\n")                                                                                = 15
+[pid 10185] send(4, 0x7fff867756d0, 15, 0)                                                                            = 15
+```
+
+Essayons de placer un NUL byte en début de chaine, pour bypasser le test fait avec strstr :
+
+```
+[pid 10431] strstr("", "admin")                                                                                       = nil
+...
+[pid 10431] strlen("AGFkbWlu")                                                                                        = 8
+```
+
+On voit ensuite la chaine "admin" en base 64, puis on reçoit bien une clef pour se loguer.
+
+On peut maintenant se connecter en tant qu'admin, puis demander "Show my secret" pour obtenir le flag.
+
+
+### Conclusion
+
+Ce challenge était facile une fois qu'on a repéré le test avec strstr.
+
+Je m'attendais plutot à trouver une vulnérabilité permettant l'exécution arbitraire de code, et c'est dans cette vaine recherche que j'ai perdu le plus de temps.
+
+L'exploit est sur github :
+
+[exploit](https://github.com/t00sh/ctf/blob/master/asis_finals_2014/hobby.pl)
