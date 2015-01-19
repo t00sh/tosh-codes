@@ -1,0 +1,117 @@
+Title: [Ghosts In The Shellcodes 2015] MTGO (crypto 200)
+Date: 2015-01-18
+Tags: ctf,crypto
+Author: Tosh
+Summary: Ghosts In The Shellcodes CTF write-up
+
+Voici un petit write-up pour le challenge de cryptographie MTGO, issue du CTF Ghosts in the shellcodes.
+
+## Analyse
+
+On a un programme Python (Décidément, dur la vie  d'[ophiophobe](https://fr.wikipedia.org/wiki/Ophiophobie)), réalisant un chiffrement maison.
+
+Il s'agit d'une table (une liste de chaines de caractères uniques), dont les entrées sont permutées de façon pseudo-aléatoires.
+
+On nous donne les 7 premières entrées de la table, et on doit renvoyer les 13 suivantes.
+
+* Fonction réalisant le mélange de la table *
+
+```python
+def shuffle(deck):
+	for i in xrange(len(deck)):
+		s = random.randint(0, len(deck)-1)
+		t = deck[s]
+		deck[s] = deck[i]
+		deck[i] = t
+
+	return deck
+
+```
+
+On voit que pour chaque entrée, un nombre (S) pseudo-aléatoire est tiré, et l'entrée est échangée avec deck[S].
+
+* La fonction "game" *
+
+```python
+def game(sock):
+	# (1)
+	random.seed(get_tick())
+	# (2)
+	deck = shuffle(basedeck)
+	# (3)
+	sock.sendall(deck[:7])
+	# (4)
+	if sock.recv(2048) == ','.join(deck[7:20]):
+		return True
+	return False
+```
+
+- (1) Le générateur de nombre pseudo aléatoire est ensemencé (on verra comment est généré la graine)
+
+- (2) La table est mélangée
+
+- (3) Les 7 premières entrées sont envoyées
+
+- (4) On vérifie que la réponse du client correspond bien aux 13 entrées suivante de notre table
+
+
+* La fonction get_tick() *
+
+```python
+def get_tick():
+	# gives you a string down to the millisecond*10
+	return datetime.datetime.now().isoformat()[:-4]
+
+```
+
+Cette fonction renvoit une chaine de caractères de la forme : 2015-01-18T12:48:58.10.
+
+C'est cette fonction qui sert à ensemencer le générateur de nombre pseudo-aléatoire.
+
+
+## Exploitation
+
+Avec notre point de vue de cryptanalyste, et sans entrer dans les détails de l'algorithme présenté, on sait que les nombres aléatoires utilisés en cryptographies ne doivent pas êtres (facilement) prédictibles.
+
+Ici, la plus grosse faiblesse est d'avoir généré la graine avec un élément fortement prédictible : la date actuelle.
+
+random.randint est également à bannir d'une utilisation cryptographique, mais je pense qu'attaquer directement le générateur aurait demandé plus de travail.
+
+
+Pour exploiter cette faille, j'ai décidé de bruteforcer les parties de la graine les plus imprévisibles : les secondes et les millisecondes. J'itère, jusqu'à ce que je retombe sur les 7 entrées que le serveur m'envoit.
+
+Il faut répéter ce processus 20 fois, puis le flag de validation nous est envoyé.
+
+Le script permettant d'automatiser tout ça est disponible sur [github](https://github.com/t00sh/ctf/blob/master/gits_2015/crypto_mtgo.py). À noter que c'est la première fois que je programme en Python, donc y'a des trucs un peu moches.
+
+J'ai utilisé Python simplement pour avoir le même générateur pseudo-aléatoire que le challenge.
+
+```
+
+$ python2.7 crypto_mtgo.py        
+Seed 00 : 2015-01-18T11:18:28.07  
+Seed 01 : 2015-01-18T11:18:28.42  
+Seed 02 : 2015-01-18T11:18:28.83  
+Seed 03 : 2015-01-18T11:18:29.20  
+Seed 04 : 2015-01-18T11:18:29.57  
+Seed 05 : 2015-01-18T11:18:29.93  
+Seed 06 : 2015-01-18T11:18:30.30  
+Seed 07 : 2015-01-18T11:18:30.68  
+Seed 08 : 2015-01-18T11:18:31.08  
+Seed 09 : 2015-01-18T11:18:31.50  
+Seed 10 : 2015-01-18T11:18:31.89  
+Seed 11 : 2015-01-18T11:18:32.28  
+Seed 12 : 2015-01-18T11:18:32.67  
+Seed 13 : 2015-01-18T11:18:33.07  
+Seed 14 : 2015-01-18T11:18:33.46  
+Seed 15 : 2015-01-18T11:18:33.86  
+Seed 16 : 2015-01-18T11:18:34.27  
+Seed 17 : 2015-01-18T11:18:34.71  
+Seed 18 : 2015-01-18T11:18:35.13  
+Seed 19 : 2015-01-18T11:18:35.55  
+FLAG: All is known, flee at once. 
+
+```
+
+Encore une fois, ça montre que le générateur aléatoire d'un système cryptographique est un élément centrale, et qu'une faiblesse dans celui-ci, permet de compromettre la totalité du système.
+

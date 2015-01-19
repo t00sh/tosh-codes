@@ -1,0 +1,106 @@
+Title: [Ghosts In The Shellcodes 2015] Knockers (crypto 150)
+Date: 2015-01-18
+Tags: ctf,crypto
+Author: Tosh
+Summary: Ghosts In The Shellcodes CTF write-up
+
+Voici un petit write-up pour le challenge de cryptographie Knockers, issue du CTF Ghosts in the shellcodes.
+
+## Analyse
+
+On a un programme Python, qui écoute en UDP et qui ouvre certains ports suivant les tokens qu'il reçoit.
+On nous donne également un token, permettant d'ouvrir le port 80.
+
+Le but du challenge, est d'arriver à générer un token valide, permettant d'ouvrir le port 7175.
+
+*Fonction qui génère le token*
+
+```python
+def generate_token(h, k, *pl):
+	m = struct.pack('!'+'H'*len(pl), *pl)
+	mac = h(k+m).digest()
+	return mac + m
+```
+
+Le token a la forme : SHA512(KEY || (PORT_LIST)) || (PORT_LIST)
+
+La clef est secrete, mais on sait qu'elle est constituée de 16 bytes aléatoires.
+
+*Fonction qui test le token*
+
+```python
+def parse_and_verify(h, k, m):
+    	# (1)
+	ds = h().digest_size
+	if len(m) < ds:
+		return None
+        print "OK"
+
+	# (2)
+	mac = m[:ds]
+	msg = m[ds:]
+
+	# (3)
+	if h(k+msg).digest() != mac:
+		return None
+
+	# (4)
+	port_list = []
+	for i in range(0,len(msg),2):
+		if i+1 >= len(msg):
+			break
+		port_list.append(struct.unpack_from('!H', msg, i)[0])
+	return port_list
+
+```
+
+- En (1), la fonction vérifie la longueur du token, il doit faire au moins 512 bits (taille du hashage SHA512).
+- En (2), le hash et la liste de ports sont séparés
+- En (3), on vérifie que SHA512(KEY || MSG) == MAC
+- En (4), les ports sont extraits du message, pour être ouverts par la suite.
+
+La manière dont le MAC est réalisé MAC(SECRET || MSG), est susceptible d'être attaqué avec une "Hash length extension attack"
+Par chance, SHA512 est vulnérable à ce type d'attaque.
+
+## Exploitation
+
+Je ne suis pas cryptographe, et ce type d'attaque est déjà bien documenté, je ne vais donc pas la décrire ici.
+Je vous renvoit à cet article si vous souhaitez en savoir plus, c'est d'ailleurs celui-ci qui m'a servit à résoudre ce challenge : [blog.skullsecurity.org](https://blog.skullsecurity.org/2012/everything-you-need-to-know-about-hash-length-extension-attacks)
+
+L'auteur de ce blog a d'ailleurs créé un petit outil bien sympathique pour automatiser l'attaque, et générer des MAC valides.
+L'outil se trouve sur [github](https://github.com/iagox86/hash_extender).
+
+
+*Déroulement de l'exploitation*
+
+- *1/* On génère un token valide, grâce à l'outil hash_extender. (Vous trouverez mon script sur [github](https://github.com/t00sh/ctf/blob/master/gits_2015/crypto_knockers.pl))
+
+```
+$ perl crypto_knockers.pl
+f11849ac29b10a169b8a378a84695ddf8d80c2e75f6e59e7de5a84a66e5c204efb1d3b2e486498d106b7236b7fbf23fefb7f3ce930c702c25ff5563bd596bea7005080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000901c07		
+```
+
+- *2/* On utilise le programme fournit avec le challenge, pour faire "knock knock ?!", avec le token qu'on a généré :
+
+```
+$ python2.7 knockers.py knock knockers.2015.ghostintheshellcode.com f11849ac29b10a169b8a378a84695ddf8d80c2e75f6e59e7de5a84a66e5c204efb1d3b2e486498d106b7236b7fbf23fefb7f3ce930c702c25ff5563bd596bea7005080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000901c07
+```
+
+À noter que le challenge n'était disponible qu'en IPv6, il fallait donc avoir une IPv6 pour réaliser le challenge.
+
+- *3/* Le port 7175 est maintenant débloqué, on peut récupérer le flag :
+
+```
+$ wget knockers.2015.ghostintheshellcode.com:7175
+$ cat index.html | grep key
+<a href="key.txt">key.txt</a>                                            16-Jan-2015 23:10                  39
+$ wget knockers.2015.ghostintheshellcode.com:7175/key.txt
+$ cat key.txt
+the_snozberries_taste_like_snozberries
+```
+
+Voilà, un challenge bien symphatique.
+
+Même si je n'ai pas pris le temps de créer moi même l'outil permettant de générer le MAC valide, ce challenge m'a au moins permis d'apprendre le fonctionnement de ce type d'attaque !
+
+Crypto is hard, but crypto is fun !
