@@ -8,10 +8,10 @@
 set -x
 set -e
 
-REMOTE_REPO="/usr/share/nginx/www/"
+REMOTE_REPO="/usr/share/nginx/www/t0x0sh"
 LOCAL_REPO="./repo"
 
 chmod -R 0755 $LOCAL_REPO
 
-rsync -avzh --delete --progress -e ssh $LOCAL_REPO www-data@10.8.0.1:$REMOTE_REPO/
+rsync -avzh --delete --progress -e ssh $LOCAL_REPO www-data@t0x0sh.org:$REMOTE_REPO/
 
