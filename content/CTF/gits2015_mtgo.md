@@ -14,7 +14,7 @@ Il s'agit d'une table (une liste de chaines de caractères uniques), dont les en
 
 On nous donne les 7 premières entrées de la table, et on doit renvoyer les 13 suivantes.
 
-* Fonction réalisant le mélange de la table *
+**Fonction réalisant le mélange de la table**
 
 ```python
 def shuffle(deck):
@@ -30,7 +30,7 @@ def shuffle(deck):
 
 On voit que pour chaque entrée, un nombre (S) pseudo-aléatoire est tiré, et l'entrée est échangée avec deck[S].
 
-* La fonction "game" *
+**La fonction "game"**
 
 ```python
 def game(sock):
@@ -55,7 +55,7 @@ def game(sock):
 - (4) On vérifie que la réponse du client correspond bien aux 13 entrées suivante de notre table
 
 
-* La fonction get_tick() *
+**La fonction get_tick()**
 
 ```python
 def get_tick():
