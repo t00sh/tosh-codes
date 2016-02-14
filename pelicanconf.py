@@ -3,39 +3,36 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Tosh'
-SITENAME = "<Tosh'codes>"
-SITEURL = 'http://www.t0x0sh.org'
+SITENAME = 'Tosh Codes'
+SITEURL = ''
+
+PATH = 'content'
+STATIC_PATHS = ['images','static']
 
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = 'fr'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
+FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('ZadYree', 'http://z4d.tuxfamily.org/blog/'),
-         ('W4kfu', 'http://blog.w4kfu.com/'),
-         ('RootBSD', 'http://www.r00ted.com/'),
-         ('RootMe', 'http://www.root-me.org/'),
-         ('LSE', 'http://blog.lse.epita.fr/'),
-         ('kmkz', 'http://kmkz-web-blog.blogspot.fr/'),
-         ('HackBBS', 'http://hackbbs.org/index.php'),
-         ('Bases-Hacking', 'http://bases-hacking.org/'),
-)
+LINKS = (('Pelican', 'http://getpelican.com/'),
+         ('Python.org', 'http://python.org/'),
+         ('Jinja2', 'http://jinja.pocoo.org/'),
+         ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('Twitter', 'https://twitter.com/define__tosh__'),
-          ('Github', 'https://github.com/t00sh'),
-)
+SOCIAL = (('You can add links in your config file', '#'),
+          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 5
 
-STATIC_PATHS = ['images']
-
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+#RELATIVE_URLS = True
 
-THEME = "pelican-themes/gum"
+THEME = 'pelican-themes/gum'

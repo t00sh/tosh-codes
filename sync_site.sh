@@ -11,7 +11,7 @@ set -e
 REMOTE_REPO="/home/t0x0sh/www/t0x0sh"
 LOCAL_REPO="./output"
 
-pelican content
+pelican content -s pelicanconf.py
 chmod -R 0755 $LOCAL_REPO
 
 rsync -a --progress -e ssh $LOCAL_REPO/* t0x0sh@t0x0sh.org:$REMOTE_REPO/
