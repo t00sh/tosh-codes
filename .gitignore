@@ -1,5 +1,4 @@
-*~
-__pycache__
-output
-cache
-repo
+_site
+.sass-cache
+.jekyll-metadata
+*.lock

@@ -1,0 +1,223 @@
+/**
+ * Site header
+ */
+.site-header {
+    border-top: 5px solid $grey-color-dark;
+    border-bottom: 5px solid $grey-color-light;
+    min-height: 56px;
+
+    position: relative;
+}
+
+.site-title {
+    font-size: 26px;
+    line-height: 56px;
+    margin-bottom: 0;
+    float: left;
+    color: $grey-color-dark;
+
+    &:visited {
+        color: $grey-color-dark;
+    }
+}
+
+.site-nav {
+    float: right;
+    line-height: 60px;
+
+    .menu-icon {
+        display: none;
+    }
+
+
+    .page-link {
+        color: $grey-color-dark;
+        line-height: $base-line-height;
+
+        margin-left: 20px;
+    }
+
+    @include media-query($on-palm) {
+        position: absolute;
+        top: 9px;
+        right: 30px;
+        background-color: $background-color;
+        border: 1px solid $grey-color-light;
+        border-radius: 5px;
+        text-align: right;
+
+        .menu-icon {
+            display: block;
+            float: right;
+            width: 36px;
+            height: 26px;
+            line-height: 0;
+            padding-top: 10px;
+            text-align: center;
+
+            > svg {
+                width: 18px;
+                height: 15px;
+
+                path {
+                    fill: $grey-color-dark;
+                }
+            }
+        }
+
+        .trigger {
+            clear: both;
+            display: none;
+        }
+
+        &:hover .trigger {
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .page-link {
+            display: block;
+            padding: 5px 10px;
+        }
+    }
+}
+
+
+
+/**
+ * Site footer
+ */
+.site-footer {
+    border-top: 3px solid $grey-color-light;
+    padding: $spacing-unit 0;
+}
+
+.footer-col {
+    text-align: center;
+    padding-left: $spacing-unit / 2;
+}
+
+.rss-logo {
+    height: auto;
+    width: auto;
+    max-width: 32px;
+    max-height: 32px;
+}
+
+
+@include media-query($on-palm) {
+    .footer-col {
+        float: none;
+        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+        width:         calc(100% - (#{$spacing-unit} / 2));
+    }
+}
+
+
+
+/**
+ * Page content
+ */
+.page-content {
+    padding: $spacing-unit 0;
+}
+
+.page-heading {
+    font-size: 20px;
+}
+
+.post-list {
+    margin-left: 0;
+    list-style: none;
+
+    > li {
+        margin-bottom: $spacing-unit 1;
+    }
+}
+
+.post-meta {
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
+.post-link {
+    font-size: 14px;
+}
+
+
+.home {
+    text-align: center;
+    li {
+        list-style: none;
+    }
+}
+
+/**
+ * Posts
+ */
+.post-nav {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: block;
+    width: auto;
+    overflow: hidden;
+
+    .prev {
+        float: left;
+    }
+
+    .next {
+        float: right;
+    }
+}
+
+.post-header {
+    margin-bottom: $spacing-unit;
+}
+
+.post-title {
+    font-size: 20px;
+    letter-spacing: -1px;
+    line-height: 1;
+
+    @include media-query($on-laptop) {
+        font-size: 20px;
+    }
+}
+
+.post-content {
+    margin-bottom: $spacing-unit;
+
+    h1 {
+        font-size: 20px;
+
+        @include media-query($on-laptop) {
+            font-size: 20px;
+        }
+    }
+
+    h2 {
+        font-size: 18px;
+
+        @include media-query($on-laptop) {
+            font-size: 18px;
+        }
+    }
+
+    h3 {
+        font-size: 16px;
+
+        @include media-query($on-laptop) {
+            font-size: 16px;
+        }
+    }
+
+    h4 {
+        font-size: 14px;
+
+        @include media-query($on-laptop) {
+            font-size: 14px;
+        }
+    }
+}

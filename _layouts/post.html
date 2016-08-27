@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<div class="post">
+
+
+  <header class="post-header">
+    <div class="post-nav">
+      {% if page.previous.url %}
+      <a class="prev" href="{{page.previous.url}}">&laquo; previous article</a>
+      {% endif %}
+      {% if page.next.url %}
+      <a class="next" href="{{page.next.url}}">next article &raquo;</a>
+      {% endif %}
+    </div>
+
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}
+    {% if page.author %} • {{ page.author }}{% endif %}
+    {% if page.meta %} • {{ page.meta }}{% endif %}
+    {% if page.blogger_orig_url %} •
+        Automatically converted from Blogger (<a href="{{ page.blogger_orig_url}}">original</a>)
+    {% endif %}
+    </p>
+  </header>
+
+
+  <article class="post-content">
+    {{ content }}
+  </article>
+</div>
