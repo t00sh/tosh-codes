@@ -37,4 +37,4 @@ Note: this is only for proof of concept : a lot of features are missing to creat
 
 I contribute time to time to the [root-me](https://www.root-me.org) plateform by submiting new challenges or writes-up and I also contributed to some open-source projects.
 
-I am currently working on an upcomming project : I started the developement of a portable library for easly manipulate different executable formats (PE, ELF, Mach-O...) via a generic interface.
+I am currently working on an incomming project : I started the developement of a portable library for easly manipulate different executable formats (PE, ELF, Mach-O...) via a generic interface.
