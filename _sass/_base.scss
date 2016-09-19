@@ -103,6 +103,16 @@ a {
 }
 
 
+/**
+ * Noscript
+ */
+noscript {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    color: red;
+    background: grey;
+}
 
 /**
  * Blockquotes
