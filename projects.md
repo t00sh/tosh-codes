@@ -11,6 +11,10 @@ You can find my different projects in my [Github](https://github.com/t00sh) acco
 
 rop-tool is a little tool to help you write binary exploits. It can find gadgets for rop chains, search string, trace heap allocations, disassemble code, and more...
 
+# [perl-keystone](https://github.com/t00sh/perl-keystone)
+
+Keystone is a lightweight multi-platform, multi-architecture assembler framework. Perl-keystone is a Perl binding which allow you to use the keystone library into your Perl scripts.
+
 # [perl-capstone](https://github.com/t00sh/perl-capstone)
 
 Capstone is a lightweight multi-platform, multi-architecture (ARM, MIPS, X86...) disassembly framework. Perl-capstone is a Perl binding which allow you to use the capstone library into your Perl scripts.
