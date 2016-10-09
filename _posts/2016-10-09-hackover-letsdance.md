@@ -1,5 +1,5 @@
 ---
-title: Hackover CTF 2016 - Letsdance (cryto)
+title: Hackover CTF 2016 - Letsdance (crypto)
 author: Tosh
 date: 2016-10-09
 tags: ctf,crypto,nonce,nacl
