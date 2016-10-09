@@ -6,7 +6,7 @@ tags: ctf,crypto,nonce,nacl
 layout: post
 ---
 
-Voici ma solution pour le challenge *Letsdance* du Hackover CTF, auquel j'ai participé avec la team 0x90r00t.
+Voici ma solution pour le challenge *Letsdance* du Hackover CTF, auquel j'ai participé avec la team [0x90r00t](https://0x90r00t.com).
 
 ![Letsdance](/images/hackover-2016.png)
 
