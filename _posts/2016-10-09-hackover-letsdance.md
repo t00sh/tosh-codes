@@ -6,6 +6,8 @@ tags: ctf,crypto,nonce,nacl
 layout: post
 ---
 
+Voici ma solution pour le challenge *Letsdance* du Hackover CTF, auquel j'ai participé avec la team 0x90r00t.
+
 ![Letsdance](/images/hackover-2016.png)
 
 Dans ce challenge, on nous fourni un service ainsi que le [code source](https://repo.t0x0sh.org/CTF/HACKOVER_2016/letsdance.py) du service en question.
