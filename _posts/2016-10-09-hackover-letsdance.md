@@ -10,7 +10,7 @@ Voici ma solution pour le challenge *Letsdance* du Hackover CTF, auquel j'ai par
 
 ![Letsdance](/images/hackover-2016.png)
 
-Dans ce challenge, on nous fourni un service ainsi que le [code source](https://repo.t0x0sh.org/CTF/HACKOVER_2016/letsdance.py) du service en question.
+Dans ce challenge, on nous fourni un service ainsi que le [code source](https://repo.t0x0sh.org/ctf/2016-hackover/letsdance.py) du service en question.
 
 Le service accepte plusieurs commandes :
 

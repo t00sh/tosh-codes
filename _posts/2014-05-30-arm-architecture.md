@@ -469,6 +469,6 @@ N'étant pas du tout expert en ARM, il se peut que des éléments soient incorre
 
 - ##### [Le manuel ARMv6](http://infocenter.arm.com)
 
-- ##### [Short ARM instructions set](https://repo.t0x0sh.org/Papers/Programming/2007_ARM_instructions_set.pdf)
+- ##### [Short ARM instructions set](https://repo.t0x0sh.org/papers/Programming/2007_ARM_instructions_set.pdf)
 
-- ##### [ARM instructions set](https://repo.t0x0sh.org/Papers/Programming/1994_ARMv7_instructions_set.pdf)
+- ##### [ARM instructions set](https://repo.t0x0sh.org/papers/Programming/1994_ARMv7_instructions_set.pdf)
