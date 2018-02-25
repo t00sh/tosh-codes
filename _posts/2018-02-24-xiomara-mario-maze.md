@@ -8,7 +8,7 @@ layout: post
 
 This year, my team 0x90r00t finished 3rd at the Xiomara CTF. Here is a write-up for the "Mario in maze" challenge, a programming challenge (MISC) offering 150 points.
 
-We had access to a service (139.59.28.4:1340) and had to solve 10 levels to get the flag. Each level consists of a 2D matrix n*m, and a list of checkpoints. We have to find a path in the matrix from (0,0) to (n,m) maximizing the sum of the matrix's visited cells. We can only move to right or bottom direction.
+We had access to a service (139.59.28.4:1340) and had to solve 10 levels to get the flag. Each level consists of a 2D matrix n*m, and a list of checkpoints. We have to find a path in the matrix from (1,1) to (n,m) maximizing the sum of the matrix's visited cells. We can only move to right or bottom direction.
 
 Another constraint is to visit every checkpoints given. At a first try I developed a recursive algorithm, but it was too slow on larges matrix.
 
