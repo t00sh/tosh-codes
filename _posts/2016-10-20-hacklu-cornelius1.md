@@ -8,7 +8,7 @@ layout: post
 
 Voici ma solution pour le challenge *Cornelius 1* du Hack.lu CTF, auquel j'ai participé avec la team [0x90r00t](https://0x90r00t.com).
 
-Vous pouvez trouver la source du challenge dans mon [dépôt](https://repo.t0x0sh.org/ctf/2016-hacklu/cornelius-1.rb.txt).
+Vous pouvez trouver la source du challenge dans mon [dépôt](https://repo.t0x0sh.org/ctf/2016/hacklu/cornelius-1.rb.txt).
 
 Ici, le problème est que l'on compresse les données avec [deflate](https://fr.wikipedia.org/wiki/Deflate) avant de les chiffrer avec un mode CTR. On peut donc utiliser une attaque du même principe que [CRIME](https://en.wikipedia.org/wiki/CRIME), pour deviner petit à petit le flag.
 
