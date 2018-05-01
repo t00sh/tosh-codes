@@ -77,7 +77,7 @@ $ seccomp-tools dump ./myblog
  0010: 0x06 0x00 0x00 0x00000000  return KILL
  ```
 
-We see that open, execve, fork, vfork and clone are forbidden. So, how can we read the flag ? To perform that, we can use the the syscall sys_openat with an absolute path : the first parameter (directory fd) will be ignored and the file will be opened. By luck, we learned the absolute path to the flag (/home/pwn/flag) from an another challenge.
+We see that open, execve, fork, vfork and clone are forbidden. So, how can we read the flag ? To perform that, we can use the syscall sys_openat with an absolute path : the first parameter (directory fd) will be ignored and the file will be opened. By luck, we learned the absolute path to the flag (/home/pwn/flag) from an another challenge.
 
 We now have everything to build our second shellcode :
 
