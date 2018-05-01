@@ -6,7 +6,17 @@ permalink: /contact/
 
 # Email
 
-* **email** : `tosh <at> t0x0sh.org`
+```
+tosh <at> t0x0sh.org
+```
+
+# IRC
+
+```
+tosh <at> irc.worldnet.net
+tosh <at> irc.root-me.org
+t0x0sh <at> irc.freenode.net
+```
 
 # Social medias
 
@@ -15,4 +25,4 @@ permalink: /contact/
 
 # Confidentiality
 
-If you need to send me confidential datas, use my [GnuPG key](https://repo.t0x0sh.org/gpg.txt). Do not forget to verify the key with different channels ([see this page](/keys/)).
+* See [/keys/](https://www.t0x0sh.org/keys/)

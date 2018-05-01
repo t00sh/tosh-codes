@@ -4,14 +4,23 @@ title: Keys
 permalink: /keys/
 ---
 
-I use the following [GnuPG](https://gnupg.org/) key to sign my mails and you can use it to encrypt your mails:
+# [GPG](https://repo.t0x0sh.org/gpg.txt)
 
 ```
-    pub   rsa4096 2016-08-27 [SC] [expire : 2018-08-27]
-          9B79 7754 00E2 23C7 FC90  E5C6 E5D9 1B2F 0BD5 3C6A
-          uid          [  ultime ] t0x0sh <tosh@t0x0sh.org>
+pub   rsa4096 2016-08-27 [SC] [expire : 2019-03-11]
+      9B79775400E223C7FC90E5C6E5D91B2F0BD53C6A
+uid          [  ultime ] t0x0sh <tosh@t0x0sh.org>
+sub   rsa4096 2016-08-27 [E] [expire : 2019-03-11]
 ```
 
-My key can be found on my [repository](https://repo.t0x0sh.org/gpg.txt) or on a [key server](hkp://keys.gnupg.net).
+# [OTR](./)
 
-Before using it, verify the key fingerprint with multiple channels (like [Twitter](https://twitter.com/define__tosh__) or/and [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat)).
+```
+t0x0sh@irc.feenode.net fingerprint:
+DFC0BE57 ADF19740 2DC055A0 3FF4802A DEE41096
+```
+
+```
+tosh@irc.worldnet.net fingerprint:
+FE232B50 4371D4D9 F96F0FA5 58B18D03 39D0556A
+```
