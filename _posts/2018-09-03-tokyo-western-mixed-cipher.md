@@ -38,7 +38,7 @@ We use the encrypted key as the base message, and multiply by \\(2^e\\) at each 
 
 At step \\(i\\), if the plaintext LSB is even, then we know that $$2(2^{i-1}key~mod~n) < n$$ and if plaintext LSB is odd, $$2(2^{i-1}key~mod~n) > n$$
 
-We can do a dichotomic research, and divide upper bound by two in the first case, and divide the lower bound by two in the second case. We have a \\(log_2(n)\\) algorithm to recover the AES key.
+We can do a binary research, and divide upper bound by two in the first case, and divide the lower bound by two in the second case. We have a \\(log_2(n)\\) algorithm to recover the AES key.
 
 # Third step : finding the AES IV
 

@@ -1,5 +1,5 @@
 ---
-title: Tokyo Western CTF - Revolutional Secure Angou
+title: Tokyo Western CTF - Revolutionnal Secure Angou
 author: Tosh
 date: 2018-09-03
 tags: ctf,tokyo,crypto,rsa
