@@ -1,13 +1,13 @@
 ---
 layout: page
-title: About Me
+title: About
 permalink: /about/
 ---
 
-My pseudonyme is Tosh (or t00sh/t0x0sh) and I am a french computer sciences student, interested by hacking since many years.
+Welcome on my website !
 
-I love low level hacking and digging into programs memory to find bugs. I also enjoy a lot cryptography but I'm poorly skilled on that field.
+My pseudonyme is Tosh (or t00sh/t0x0sh) and I am a french IT security student, interested by hacking since many years.
 
-My favorites languages are C, Perl, Python, Assembly and Bash.
+I focus principaly on cryptology (cryptanalysis of symetric and asymetric systems), memory corruption vulnerabilities and network security. As a crypto guy, I enjoy mathematics topics like algebra, arithmetics and probability.
 
-I am a Linux user since a long time.
+My favorites programming languages are C, Python, Perl, OCaml, Assembly and Bash and I use Linux everyday.
