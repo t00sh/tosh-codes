@@ -6,6 +6,9 @@ permalink: /projects/
 
 You can find my different projects in my [Github](https://github.com/t00sh) account.
 
+# [py-ecdsa](https://github.com/t00sh/py-ecdsa)
+
+py-ecdsa is a small library used to sign and verify ECDSA signatures. The NIST curves P-192, P-224, P-384, P-521 from FIPS-186-4 are implemented. This library is for testing purpose, and shouldn't not be used in any critical application.
 
 # [rop-tool](https://github.com/t00sh/rop-tool)
 
