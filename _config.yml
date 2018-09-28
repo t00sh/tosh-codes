@@ -1,7 +1,12 @@
 title: t0x0sh's Blog
+description: Another infosec blog
 url: "https://blog.t0x0sh.org/"
 plugins:
         - jekyll-sitemap
+        - jekyll-minifier
+
+jekyll-minifier:
+        exclude: 'feeds.xml'
 
 # Build settings
 markdown: redcarpet

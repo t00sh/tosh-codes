@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+description: Who own the blog ?
 permalink: /about/
 ---
 
