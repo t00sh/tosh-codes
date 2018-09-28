@@ -1,5 +1,7 @@
 title: t0x0sh's Blog
 url: "https://blog.t0x0sh.org/"
+plugins:
+        - jekyll-sitemap
 
 # Build settings
 markdown: redcarpet
