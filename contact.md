@@ -25,4 +25,4 @@ t0x0sh <at> irc.freenode.net
 
 # Confidentiality
 
-* See [/keys/](https://www.t0x0sh.org/keys/)
+* See [/keys/](/keys/)
